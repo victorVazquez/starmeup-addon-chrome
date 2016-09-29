@@ -1,0 +1,132 @@
+// compileCompressed: ../css/$1.min.css
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans'
+// @import url(https://fonts.googleapis.com/css?family=Open+Sans)
+
+$fontSMU: 'Open Sans'
+$headerBGColor: #00ABAD
+
+#pagelet_escape_hatch
+  display: none
+
+#StarmeUpAddonChromeContent
+  font-family: $fontSMU
+  margin: 1em 0
+  width: 100%
+  float: left
+  background-color: #fff
+  color: #90949c
+
+  &.profileUserSMU
+    width: 323px
+    float: none
+    display: inline-block
+    clear: both
+    font-size: 1.1em
+
+    #smuAddonFBBody
+      padding-left: 1.5em
+
+      i
+        margin-top: 1em
+
+      p
+        text-align: center
+
+        a
+          display: inline-block
+          width: 70%
+          background-color: $headerBGColor
+          color: white
+          border: none
+          padding: 0.6em
+          margin-top: 0.6em
+          border-radius: 2px
+
+          &:hover
+            opacity: 0.5
+
+
+#smuAddonFBHeader
+  width: 100%
+  float: left
+  font-size: 1.2em
+  background-color: $headerBGColor
+  color: #fff
+  // text-transform: uppercase
+  //  style="background-color:#f6f7f9; padding:0.5em; border:solid 1px #dddfe2"
+  padding: 0.5em
+  border: solid 1px #dddfe2
+  // text-align: center
+
+  strong
+    padding-left: 0.3em
+
+#smuAddonFBBody
+  width: 100%
+  float: left
+  padding: 0.5em 0 1.5em 0
+  border-left: solid  1px #dddfe2
+  border-bottom: solid  1px #dddfe2
+  border-right: solid  1px #dddfe2
+  // background-color: #fff
+
+  strong
+    font-size: 0.95em
+    display: inline-block
+    padding-top: 0.5em
+
+  i
+    width: 1.4em
+    display: inline-block
+    text-align: center
+
+  span
+    display: inline-block
+    width: 100%
+    padding: 0 0.2em 0 1.7em
+    float: left
+
+  #infoUserSMULogged
+    // padding-right: 0.5em
+    div
+      float: left
+      width: 100%
+      // height: 100%
+      // padding: 0.2em
+
+      strong
+        // padding-left: 0.2em
+        // line-height: 2em
+        height: 1em
+        margin: 0
+        padding-top: 0
+        width: 100%
+        display: inline-block
+        text-align: center
+        font-size: 1.15em
+
+      span
+        display: inline
+        width: 100%
+        font-size: 2em
+        padding: 0
+        text-align: center
+
+    .stars
+      // border-bottom: solid 1px #e2e2e2
+      span
+        color: #e6c801
+
+    .badges
+      width: 46.5%
+      float: left
+      span
+        color: $headerBGColor
+
+    .remaining
+      width: 50%
+      float: left
+      // border-left: solid 1px #e2e2e2
+      span
+        color: #be2393

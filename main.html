@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Starmeup Extension's Main Screen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/css/popup.min.css" media="screen" title="no title">
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/popup.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-12">
+        <p class="text-center">
+          <img  class="text-center" src="/img/logo-login.png" alt="" />
+        </p>
+        <!-- <br>
+        <br>
+        <p>
+          <a href="my-profile.html">My Profile</a><br>
+          <a href="leaderboard.html">Leaderboard</a>
+        </p>
+        <p>
+          <input type="checkbox" id="enableIntegration" value="">
+          <label for="enableIntegration">Enable Facebook Integration</label>
+        </p> -->
+        <form class="login" id="main">
+          <p class="">
+            <button type="button" name="button" id="myProfile">My Profile</button>
+          </p>
+          <p class="">
+            <button type="button" name="button" id="leaderboard">Leaderboard</button>
+          </p>
+          <p class="text-center toggle-switch">
+            <br>
+            <!-- <label for="enableIntegration" class="enableIntegration">Enable Facebook Integration</label><br> -->
+            <span class="toggle-switch-title">Enable Facebook Integration</span>
+            <label for="enableIntegration" class="switch">
+                <input type="checkbox" id="enableIntegration" class="switch-input">
+                <span class="slider round"></span>
+                <!-- <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span -->
+            </label>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

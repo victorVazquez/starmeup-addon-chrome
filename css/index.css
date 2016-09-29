@@ -1,0 +1,254 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+/* starmeup theme */
+.starmeup{
+  background-image: url("https://www.starmeup.com/assets/img/bg-login.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.starmeup .container{
+  /*margin-bottom: 2em;*/
+  /*background-color: #b3dad9;*/
+  /*background-color: rgba(255,255,255,0);*/
+  /*background-color: transparent;*/
+}
+
+.starmeup .page-header{
+  box-shadow: 0 0 50px #555;
+}
+.page-header{
+  border-bottom: none;
+  margin-top: 0;
+  margin-bottom: 2em;
+  padding: 2em 0 1.5em 0;
+  background-color: #fff;
+}
+.container{
+  margin-top: 0em;
+  /*padding-bottom: 2em;*/
+}
+
+.starmeup #leaderBoard{
+  padding: 0 0 0em 0;
+  box-shadow: 0 0 50px #555;
+  background-color: #fff;
+}
+.starmeup #leaderBoard p{
+  padding: 1em 0 0 2em;
+  background-color: #00ABAD;
+  color: #fff;
+}
+.starmeup #leaderBoard p span.title{
+  font-size: 1.25em;
+  padding: 0.3em 2em;
+  margin-left: 5em;
+  display: inline-block;
+  background-color: #66CDCE;
+  /*float: right;*/
+}
+.fa{
+  font: normal normal normal 14px/1 FontAwesome;
+  padding-right: 0.5em
+}
+/* Leader Board */
+#leaderBoard{
+  width: 100%;
+  /*margin-left: 25%;*/
+  float: left;
+  min-width: 30em;
+}
+#leaderBoard h2{
+  margin: 0;
+  padding: 0.5em 0;
+  background-color: #5d5d5d;
+  background-color: #94005f;
+  background-color: #eee;
+  /*color: #fff;*/
+}
+#leaderBoard ul{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  float: left;
+}
+#leaderBoard li{
+  list-style: none;
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+  padding: 0 1%;
+  line-height: 2.5em;
+  display: table;
+  border-bottom: solid 1px #f2f2f2;
+}
+#leaderBoard li br{
+  display: none;
+}
+#leaderBoard .pn-wrap,
+#leaderBoard .position-number,
+#leaderBoard .img-wrap,
+#leaderBoard strong,
+#leaderBoard em,
+#leaderBoard .stars-wrap,
+#leaderBoard .stars-number
+{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+#leaderBoard strong,
+#leaderBoard em{
+  font-size: 1.2em;
+}
+
+#leaderBoard .pn-wrap{
+  width: 6%;
+  height: 100%;
+  text-align: center;
+  display: table;
+}
+#leaderBoard .position-number{
+  width: 1.5em;
+  height: 1.5em;
+  float: none;
+  line-height: 1.5em;
+  text-align: center;
+  color: white;
+  border-radius: 1.5em;
+  background-color: #ffb448;
+  text-shadow: 0 0 1px #555;
+  vertical-align: middle;
+}
+#leaderBoard .img-wrap{
+  width: 14%;
+  text-align: center;
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#leaderBoard li img{
+  position: relative;
+  float: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 5em;
+  border: solid 1px #ccc;
+}
+#leaderBoard strong{
+  width: 45%;
+  font-weight: normal;
+  color: #5e5e5e;
+}
+#leaderBoard em{
+  width: 25%;
+  color: #a1a1a1;
+
+}
+#leaderBoard .stars-wrap{
+  width: 10%;
+}
+#leaderBoard .stars-number{
+  position: relative;
+  top: 0.25em;
+  width: 30px;
+  height: 30px;
+  line-height: 32px;
+  text-shadow: 0 0 5px #555;
+  text-align: center;
+  font-size: 0.7em;
+  color: white;
+  background-image: url(https://www.starmeup.com/assets/img/ico-star30x30.png);
+}
+
+#leaderBoard .best{
+  padding: 0.5em 1% 1em 1%;
+}
+#leaderBoard .best .pn-wrap,
+#leaderBoard .best .img-wrap,
+#leaderBoard .best strong,
+#leaderBoard .best em,
+#leaderBoard .best .stars-wrap
+{
+  display: block;
+  text-align: left;
+  line-height: 1.1em;
+}
+#leaderBoard .best .pn-wrap
+{
+  padding: 0 0 0.4em 0.4em;
+}
+#leaderBoard .best .img-wrap{
+  width: 12%;
+  padding-left: 0.1em;
+}
+#leaderBoard .best .img-wrap,
+#leaderBoard .best .stars-wrap
+{
+  clear: both;
+}
+#leaderBoard .best strong
+{
+  width:80%;
+  margin-top: 0.2em;
+}
+#leaderBoard .best img{
+  width: 60px;
+  height: 60px;
+}
+#leaderBoard .best .stars-wrap
+{
+  padding: 0.2em 0 0 0.6em;
+}
+#leaderBoard .best .stars-number
+{
+  text-shadow: 0 0 5px #555;
+
+}
+
+#leaderBoard li.position1{
+  font-size: 2em;
+}
+
+#leaderBoard li.position2{
+  font-size: 1.6em;
+}
+#leaderBoard .best.position2 .img-wrap{
+  /*width: 13%;*/
+  padding-left: 0.5em;
+}
+#leaderBoard .best.position2 img{
+  width: 45px;
+  height: 45px;
+}
+#leaderBoard .best.position2 .stars-wrap{
+  padding-left: 0.8em
+}
+#leaderBoard .best.position2 .pn-wrap{
+  padding-left: 0.7em;
+}
+
+#leaderBoard li.position3{
+  font-size: 1.35em;
+}
+#leaderBoard .best.position3 .pn-wrap{
+  padding-left: 1em;
+}
+#leaderBoard .best.position3 .img-wrap{
+  /*width: 12%;*/
+  padding-left: 0.8em;
+}
+#leaderBoard .best.position3 img{
+  width: 36px;
+  height: 36px;
+}
+#leaderBoard .best.position3 .stars-wrap{
+  padding-left: 0.9em
+}

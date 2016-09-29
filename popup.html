@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Starmeup Extension's Popup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/css/popup.min.css" media="screen" title="no title">
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/popup.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-12">
+        <p class="text-center">
+          <img  class="text-center" src="/img/logo-login.png" alt="" />
+        </p>
+        <form class="login" id="formStarmeUp">
+          <p class="username">
+            <label for="username">Email Address or Id Number</label>
+            <input type="text" name="username" id="username" value="victor.vazquez@globant.com">
+          </p>
+          <p class="password">
+            <label for="password">Password</label>
+            <span class="forgot"><a href="#">Forgot Password?</a></span>
+            <input type="password" name="password" id="password" value="">
+          </p>
+          <p class="error">The ID/email or password you have entered is invalid. Try again or try logging in with a Google account.</p>
+          <p class="">
+            <button type="button" name="button" id="logIn">Login</button>
+          </p>
+          <!-- <p class="">
+            <button type="button" name="button" id="logOut">Logout</button>
+          </p> -->
+          <!-- <p class="new-user text-center">
+            <a href="signup.html">New user? Sign Up Now!</a>
+          </p> -->
+          <p class="eula">By signing in you are agreeing to the <a href="#">End User Licence Agreement</a> and the <a href="#">Terms & Conditions of Use</a></p>
+        </form>
+        <!-- <div class="text-center">
+          <button id="button" class="btn btn-primary btn-warning">Show Leaderboard</button>
+        </div> -->
+        <br>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>

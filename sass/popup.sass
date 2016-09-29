@@ -1,0 +1,129 @@
+// compileCompressed: ../css/$1.min.css
+$colorLinks: #00acae
+$bgColor: #b3dad9
+$bgColorSwitch: #d6f7f6
+
+
+body
+  font-family: 'Open Sans', sans-serif
+  background-color: $bgColor
+  // color: white
+
+a
+  color: $colorLinks
+
+  &:hover
+    text-decoration: none
+    color: $colorLinks
+
+.container
+  width: 24em
+  padding: 1.8em 0 0 0
+
+  .col-md-12
+    padding: 0
+
+
+  form
+    padding: 2em 2.5em 0 2em
+    color: #666
+    font-weight: normal
+
+  label
+    font-weight: normal
+    margin-top: 0.2em
+    color: #888
+
+  .forgot
+    float: right
+
+
+  input
+    width: 100%
+    height: 2.15em
+    padding: 0.1em 0.5em
+    border: none
+    border-radius: 2px
+
+  .error
+    display: none
+
+    &.show
+      display: block
+
+  button
+    width: 100%
+    background-color: $colorLinks
+    color: white
+    border: none
+    padding: 0.6em
+    margin-top: 0.6em
+    border-radius: 2px
+
+    &:hover
+      opacity: 0.5
+
+  .eula
+    font-size: 0.86em
+
+
+
+/* main.html */
+
+#main
+  span
+    display: block
+
+.switch
+  position: relative
+  display: inline-block
+  width: 4em
+  height: 2.2em
+
+
+
+  input
+    display: none
+
+    &:checked
+      ~ .slider
+        background-color: $colorLinks
+
+    &:focus
+      ~ .slider
+        box-shadow: 0 0 1px #006667
+
+
+    &:checked
+      ~ .slider:before
+        transform: translateX(26px)
+
+  .slider
+    display: inline-block
+    position: absolute
+    cursor: pointer
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    background-color: $bgColorSwitch
+    border: solid 1px #8bcfd0
+    transition: 0.4s
+
+    &:before
+      position: absolute
+      content: ""
+      height: 2.1em
+      width: 2.1em
+      left: 0em
+      bottom: 0em
+      background-color: #fff
+      border: solid 1px #8bcfd0
+      transition: 0.4s
+
+  .round
+    border-radius: 1.2em
+
+  .round
+    &:before
+      border-radius: 1.2em

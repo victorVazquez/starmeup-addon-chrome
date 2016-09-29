@@ -1,0 +1,20 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #b3dad9;
+}
+.container{
+  width: 24em;
+  padding: 1.8em 0 0 0;
+}
+.container .col-md-12{
+  padding: 0
+}
+a{
+  width: 80%;
+  text-align: center;
+  display: inline-block;
+  padding: 0.6em;
+  margin: 0.6em;
+  color: #fff;
+  background-color: #00acae;
+}

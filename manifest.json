@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "StarmeUp Addon Chrome",
+  "description": "StarmeUp plugin for Facebook",
+  "version": "1.0",
+  "icons": {
+    "16": "img/icon.png",
+    "48": "img/logo-login.png"
+  },
+  "background": {
+    "scripts": ["js/jquery-2.2.4.min.js", "js/background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "StarmeUp Addon",
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/*"],
+      "css": ["css/bootstrap.min.css", "css/font-awesome.min.css", "css/addon-smu-chrome.min.css"],
+      "fonts": ["https://fonts.googleapis.com/css?family=Open+Sans"],
+      "js": ["js/jquery-2.2.4.min.js", "js/content.js"]
+    }
+  ],
+  "web_accessible_resources": ["js/jquery-2.2.4.min.js", "fonts/*", "https://fonts.googleapis.com/css?family=Open+Sans", "css/addon-smu-fb.min.css"],
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab",
+    "webNavigation",
+    "http://*/*",
+    "https://*/*",
+    "https://www.facebook.com/*"
+  ]
+}
