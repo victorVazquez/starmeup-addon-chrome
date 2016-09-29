@@ -1,13 +1,13 @@
 // compileCompressed: ../css/$1.min.css
 $colorLinks: #00acae
-$bgColor: #b3dad9
+$bgColor: #fff
 $bgColorSwitch: #d6f7f6
-
+$formColor: #333
+$eulaColor: #666
 
 body
   font-family: 'Open Sans', sans-serif
   background-color: $bgColor
-  // color: white
 
 a
   color: $colorLinks
@@ -17,22 +17,27 @@ a
     color: $colorLinks
 
 .container
-  width: 24em
-  padding: 1.8em 0 0 0
+  width: 25em
+  padding: 2.85em 0 0 0
+  border: solid 1px #ccc
 
   .col-md-12
     padding: 0
 
+  .logo
+    width: 105px
+    height: auto
 
   form
-    padding: 2em 2.5em 0 2em
-    color: #666
+    float: left
+    width: 100%
+    padding: 1.4em 2.5em 0 2em
+    color: $formColor
     font-weight: normal
 
   label
     font-weight: normal
     margin-top: 0.2em
-    color: #888
 
   .forgot
     float: right
@@ -40,10 +45,11 @@ a
 
   input
     width: 100%
-    height: 2.15em
-    padding: 0.1em 0.5em
-    border: none
+    height: 2.5em
+    padding: 0.1em 0.65em
+    border: solid 1px #ccc
     border-radius: 2px
+    color: $eulaColor
 
   .error
     display: none
@@ -52,19 +58,23 @@ a
       display: block
 
   button
+    font-size: 1.25em
     width: 100%
     background-color: $colorLinks
     color: white
     border: none
     padding: 0.6em
     margin-top: 0.6em
+    margin-bottom: 2em
     border-radius: 2px
+    text-transform: uppercase
 
     &:hover
       opacity: 0.5
 
   .eula
-    font-size: 0.86em
+    font-size: 0.81em
+    margin-bottom: 2em
 
 
 
@@ -73,6 +83,10 @@ a
 #main
   span
     display: block
+
+  button
+    margin-bottom: 1em
+    margin-top: 0
 
 .switch
   position: relative
