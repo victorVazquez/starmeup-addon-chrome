@@ -32,10 +32,13 @@ $headerBGColor: #00ABAD
 
       p
         text-align: center
+        padding-right: 1.5em
 
         a
           display: inline-block
-          width: 70%
+          width: 100%
+          font-size: 1.2em
+          text-transform: uppercase
           background-color: $headerBGColor
           color: white
           border: none
@@ -45,6 +48,7 @@ $headerBGColor: #00ABAD
 
           &:hover
             opacity: 0.5
+            text-decoration: none
 
 
 #smuAddonFBHeader
@@ -61,6 +65,7 @@ $headerBGColor: #00ABAD
 
   strong
     padding-left: 0.3em
+    font-weight: normal
 
 #smuAddonFBBody
   width: 100%
@@ -77,7 +82,7 @@ $headerBGColor: #00ABAD
     padding-top: 0.5em
 
   i
-    width: 1.4em
+    width: 1.2em
     display: inline-block
     text-align: center
 
@@ -116,7 +121,7 @@ $headerBGColor: #00ABAD
     .stars
       // border-bottom: solid 1px #e2e2e2
       span
-        color: #e6c801
+        color: #ffc700
 
     .badges
       width: 46.5%
@@ -130,3 +135,36 @@ $headerBGColor: #00ABAD
       // border-left: solid 1px #e2e2e2
       span
         color: #be2393
+
+
+.fa-star-smu
+  transform: rotate(-15deg)
+  font-size: 1.2em
+  line-height: 1.4em
+
+#infoUserSMULogged.horizontal
+  div
+    margin-top: 1em
+    width: 33%!important
+
+  .stars
+    width: 28%!important
+    border-right: solid 1px #ccc
+
+  .remaining
+    width: 38%!important
+    border-left: solid 1px #ccc
+
+
+
+  span
+    font-size: 1.5em!important
+
+    i
+      width: auto!important
+
+    .fa-certificate
+      padding-right: 0.5em!important
+
+  strong
+    font-size: 0.8em!important

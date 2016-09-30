@@ -1,23 +1,33 @@
 window.onload = function(){
   console.log('POPUP.JS');
   var StarmeUpAddonChromePopUp = StarmeUpAddonChromePopUp || {};
-  // var __url__ = 'https://qa.starmeup.com/starmeup-api/v2/stellar/starsreceived/';
-  // var expReg = /(https:\/\/qa.starmeup.com\/starmeup-api\/v2\/stellar\/)+/g;
-  // var expReg = /(\/)[a-z]+/g;
-  // console.log(__url__);
-  // console.log(__url__.match(expReg)[4].substring(1));
+  StarmeUpAddonChromePopUp.SMUEnableLogger = true;
 
-  // chrome.browserAction.onClicked.addListener(function(tab) {
-  //     alert('Hi');
-  // });
+  StarmeUpAddonChromePopUp.SMULogger = function(name) {
+    if (StarmeUpAddonChromePopUp.SMUEnableLogger === true) {
+      return {
+            debug: console.log.bind(console, '\b[' + name + ']\n '),
+            log: console.log.bind(console, '\b[' + name + ']\n '),
+            info: console.info.bind(console, '[' + name + ']\n '),
+            warn: console.warn.bind(console, '[' + name + ']\n '),
+            error: console.error.bind(console, '[' + name + ']\n ') };
+    } else {
+      var dummyFunction = function() {};
+      return {
+            debug: dummyFunction,
+            log: dummyFunction,
+            info: dummyFunction,
+            warn: dummyFunction,
+            error: dummyFunction };
+    }
+  };
+
 
   if ('userSMULogged' in localStorage) {
-    // alert('Integration Enabled');
     if ('IntegrationEnabled' in localStorage) {
       $('#enableIntegration').prop('checked', true);
       $('.toggle-switch-title').text('Disable Facebook Integration');
     }
-
     chrome.tabs.query({'active': true}, function(Tabs){
       chrome.browserAction.setPopup({
         // tabId: Tabs[0].id,
@@ -38,20 +48,21 @@ window.onload = function(){
 
 
   StarmeUpAddonChromePopUp.authenticateUserSMU = function(){
-    // console.log('StarmeUpAddonChromePopUp.username: ', StarmeUpAddonChromePopUp.username);
-    // console.log(StarmeUpAddonChromePopUp.password);
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Authenticate User');
+    // logger.log('StarmeUpAddonChromePopUp.username: ', StarmeUpAddonChromePopUp.username);
+    // logger.log(StarmeUpAddonChromePopUp.password);
     // return;
     var requestUserSMUData = new XMLHttpRequest();
     var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/?email=' + StarmeUpAddonChromePopUp.username + '&password=' + StarmeUpAddonChromePopUp.password;
     requestUserSMUData.open('POST', url, true);
     requestUserSMUData.onreadystatechange = function(){
-      // console.log(requestUserSMUData);
+      // logger.log(requestUserSMUData);
       // return;
       if (requestUserSMUData.readyState == 4) {
         var data = JSON.parse(requestUserSMUData.responseText);
-        console.log('data: ', data);
+        logger.log('data: ', data);
         // return;
-        // console.log('data.errorCode: ', data.errorCode);
+        // logger.log('data.errorCode: ', data.errorCode);
         if (data.errorCode == 100 || data.errorCode == 125) { // invalid credentials
           $('#formStarmeUp .error').addClass('show');
         }else{
@@ -71,7 +82,7 @@ window.onload = function(){
           // window.location.href = 'main.html';
 
           // chrome.tabs.query({'active': true}, function(Tabs){
-          //   // console.log(Tabs);
+          //   // logger.log(Tabs);
           //   // chrome.tabs.sendMessage(Tabs[1].id, {'type': 'profile', 'profile': profile});
           //   chrome.tabs.sendMessage(Tabs[1].id, {'type': 'userLogged', 'token': tokenSMULogged, 'profileUserSMULogged': profileUserSMULogged});
           // });
@@ -82,8 +93,8 @@ window.onload = function(){
   };
 
   StarmeUpAddonChromePopUp.getInfoUserSMULogged = function(id){
-    // console.log('id: ', id);
-    // return;
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Get Info User SMU Logged');
+
     var urls = [
       'https://qa.starmeup.com/starmeup-api/v2/stellar/starsreceived/'+ id + '?v=2&o=SMU_WEB',
       'https://qa.starmeup.com/starmeup-api/v2/stellar/starsgiven/'+ id + '?v=2&o=SMU_WEB',
@@ -93,7 +104,6 @@ window.onload = function(){
 
     var requests = new Array();
     var info = {};
-    var result = [];
     var numRequest = 0;
 
     for (var i in urls) {
@@ -112,7 +122,7 @@ window.onload = function(){
           if (xhr.readyState == 4 && xhr.status == 200) {
             var data = JSON.parse(xhr.responseText);
             var typeInfo = _url.match(/(\/)[a-z]+/g)[4].substr(1);
-            console.log('typeInfo: ', typeInfo);
+            logger.log('typeInfo: ', typeInfo);
             switch (typeInfo) {
               case 'starsreceived':
                 info['starsReceived'] = data.result;
@@ -131,49 +141,27 @@ window.onload = function(){
               break;
 
             }
-            // result.push(data.result);
-            // info['']
-            // switch(typeof data.result){
-            //   case 'number':
-            //   if (_url.match(/remainder/g)) {
-            //     info['starsRemaining'] = data.result;
-            //   }else{
-            //     info['starsReceived'] = data.result;
-            //   }
-            //   break;
-            //
-            //   case 'object':
-            //     if (data.result instanceof Array) {
-            //       info['starsGiven'] = data.result.length;
-            //     }else{
-            //       info['Badges'] = data.result.earned;
-            //     }
-            //   break;
-            // }
 
             localStorage.setItem('InfoUserSMULogged', JSON.stringify(info));
-            // console.log('typeof data.result: ', typeof data.result);
-            // var instance = data.result;
-            // console.log('instanceof: ', data.result instanceof Array);
-            // // console.log('data: ', data);
-            // console.log('queues: ', data.result);
-            // console.log('result: ', result);
-            console.log('info: ', info);
+
             numRequest++;
             if (numRequest == urls.length) {
-              // console.log('finish requests');
-              // console.log('info finish: ', info);
+              logger.log('finish requests: ');
+              logger.log('info finish: ', info);
               chrome.tabs.query({'active': true}, function(Tabs){
-                chrome.tabs.sendMessage(Tabs[1].id, {'type': 'userLogged', 'infoUserSMULogged': JSON.parse(localStorage['InfoUserSMULogged'])});
+                logger.log('Tabs: ', Tabs);
+                logger.log('Tabs[1]: ', Tabs[1]);
+                logger.log('infoUserSMULogged: ', JSON.parse(localStorage['InfoUserSMULogged']));
+                chrome.tabs.sendMessage(Tabs[1].id, {'type': 'userLogged', 'infoUserSMULogged': localStorage['InfoUserSMULogged']});
                 window.location.href = 'main.html';
               });
             }
-            // console.log('constructor: ', data.result.constructor);
+            // logger.log('constructor: ', data.result.constructor);
           }
         };
         xhr.send();
-        // console.log('urls.length: ', urls.length);
-        // console.log('numRequest: ', numRequest);
+        // logger.log('urls.length: ', urls.length);
+        // logger.log('numRequest: ', numRequest);
     }
 
   };
@@ -186,6 +174,8 @@ window.onload = function(){
   //
 
   $('#logIn').on('click', function(e){
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Log In');
+
     StarmeUpAddonChromePopUp.username = $('#username').val();
     StarmeUpAddonChromePopUp.password = $('#password').val();
     // If user is already logged
@@ -198,7 +188,9 @@ window.onload = function(){
 
   // send to profile userSMU
   $('#myProfile').on('click', function(e){
-    console.log('profileUserSMULogged: ', JSON.parse(localStorage.getItem('profileUserSMULogged')));
+    var logger = StarmeUpAddonChromePopUp.SMULogger('My Profile');
+
+    logger.log('profileUserSMULogged: ', JSON.parse(localStorage.getItem('profileUserSMULogged')));
     var data = JSON.parse(localStorage.getItem('profileUserSMULogged'));
     var uid = data.uid;
     chrome.tabs.create({
@@ -210,6 +202,8 @@ window.onload = function(){
   });
 
   $('#leaderboard').on('click', function(e){
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Leaderboard');
+
     chrome.tabs.create({
       url: 'https://qa.starmeup.com/#leaderboard',
       active: true
@@ -220,8 +214,10 @@ window.onload = function(){
   });
 
   $('#enableIntegration').change(function(e){
-    // console.log('isChecked');
-    // console.log(localStorage['tokenSMULogged']);
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Enable Integration');
+
+    // logger.log('isChecked');
+    // logger.log(localStorage['tokenSMULogged']);
 
     if ('IntegrationEnabled' in localStorage) {
       $('.toggle-switch-title').text('Enable Facebook Integration');
@@ -232,10 +228,13 @@ window.onload = function(){
     }else{
       $('.toggle-switch-title').text('Disable Facebook Integration');
       chrome.tabs.query({'active': true}, function(Tabs){
-        // console.log(Tabs);
+        logger.log(Tabs);
+        logger.log('token: ', localStorage['tokenSMULogged']);
+        logger.log('infoUserSMULogged: ', JSON.parse(localStorage['InfoUserSMULogged']));
+        logger.log('profileUserSMULogged: ', JSON.parse(localStorage['profileUserSMULogged']));
         // chrome.tabs.sendMessage(Tabs[1].id, {'type': 'profile', 'profile': profile});
         localStorage.setItem('IntegrationEnabled', 'true');
-        chrome.tabs.sendMessage(Tabs[1].id, {'type': 'appIntegrationEnabled', 'token': localStorage['tokenSMULogged'], 'infoUserSMULogged': JSON.stringify(localStorage['InfoUserSMULogged']), 'profileUserSMULogged': JSON.parse(localStorage['profileUserSMULogged'])});
+        chrome.tabs.sendMessage(Tabs[1].id, {'type': 'appIntegrationEnabled', 'token': localStorage['tokenSMULogged'], 'infoUserSMULogged': localStorage['InfoUserSMULogged'], 'profileUserSMULogged': localStorage['profileUserSMULogged']});
       });
     }
     // return;
