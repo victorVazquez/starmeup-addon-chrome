@@ -82,62 +82,12 @@ a
 
 #main
   strong
-    display: block
+    padding-left: 0.25em
 
   button
     margin-bottom: 1em
     margin-top: 0
 
-.switch
-  position: relative
-  display: inline-block
-  width: 4em
-  height: 2.2em
-
-
-
   input
-    display: none
-
-    &:checked
-      ~ .slider
-        background-color: $colorLinks
-
-    &:focus
-      ~ .slider
-        box-shadow: 0 0 1px #006667
-
-
-    &:checked
-      ~ .slider:before
-        transform: translateX(26px)
-
-  .slider
-    display: inline-block
-    position: absolute
-    cursor: pointer
-    top: 0
-    left: 0
-    bottom: 0
-    right: 0
-    background-color: $bgColorSwitch
-    border: solid 1px #8bcfd0
-    transition: 0.4s
-
-    &:before
-      position: absolute
-      content: ""
-      height: 2.1em
-      width: 2.1em
-      left: 0em
-      bottom: 0em
-      background-color: #fff
-      border: solid 1px #8bcfd0
-      transition: 0.4s
-
-  .round
-    border-radius: 1.2em
-
-  .round
-    &:before
-      border-radius: 1.2em
+    width: auto
+    height: auto

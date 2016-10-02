@@ -45,10 +45,10 @@ $headerBGColor: #00ABAD
           padding: 0.6em
           margin-top: 0.6em
           border-radius: 2px
+          text-decoration: none
 
           &:hover
             opacity: 0.5
-            text-decoration: none
 
 
 #smuAddonFBHeader
@@ -57,11 +57,8 @@ $headerBGColor: #00ABAD
   font-size: 1.2em
   background-color: $headerBGColor
   color: #fff
-  // text-transform: uppercase
-  //  style="background-color:#f6f7f9; padding:0.5em; border:solid 1px #dddfe2"
   padding: 0.5em
   border: solid 1px #dddfe2
-  // text-align: center
 
   strong
     padding-left: 0.3em
@@ -74,7 +71,6 @@ $headerBGColor: #00ABAD
   border-left: solid  1px #dddfe2
   border-bottom: solid  1px #dddfe2
   border-right: solid  1px #dddfe2
-  // background-color: #fff
 
   strong
     font-size: 0.95em
@@ -93,46 +89,53 @@ $headerBGColor: #00ABAD
     float: left
 
   #infoUserSMULogged
-    // padding-right: 0.5em
+
     div
       float: left
-      width: 100%
-      // height: 100%
-      // padding: 0.2em
+      margin-top: 1em
+      width: 33%
 
       strong
-        // padding-left: 0.2em
-        // line-height: 2em
         height: 1em
         margin: 0
         padding-top: 0
         width: 100%
         display: inline-block
         text-align: center
-        font-size: 1.15em
+        font-size: 0.8em
 
       span
         display: inline
         width: 100%
-        font-size: 2em
+        font-size: 1.5em
         padding: 0
         text-align: center
 
+        i
+          width: auto
+
+        .fa-certificate
+          padding-right: 0.5em
+
+
+
     .stars
-      // border-bottom: solid 1px #e2e2e2
+      width: 28%
+      border-right: solid 1px #ccc
+
       span
         color: #ffc700
 
     .badges
-      width: 46.5%
-      float: left
+
       span
         color: $headerBGColor
 
     .remaining
-      width: 50%
+      width: 38%
+      border-left: solid 1px #ccc
       float: left
-      // border-left: solid 1px #e2e2e2
+
       span
         color: #be2393
 
@@ -141,30 +144,3 @@ $headerBGColor: #00ABAD
   transform: rotate(-15deg)
   font-size: 1.2em
   line-height: 1.4em
-
-#infoUserSMULogged.horizontal
-  div
-    margin-top: 1em
-    width: 33%!important
-
-  .stars
-    width: 28%!important
-    border-right: solid 1px #ccc
-
-  .remaining
-    width: 38%!important
-    border-left: solid 1px #ccc
-
-
-
-  span
-    font-size: 1.5em!important
-
-    i
-      width: auto!important
-
-    .fa-certificate
-      padding-right: 0.5em!important
-
-  strong
-    font-size: 0.8em!important
