@@ -1,7 +1,7 @@
 /*content.js*/
 console.log('CONTENT.JS');
 var StarmeUpAddonChromeContent = StarmeUpAddonChromeContent || {};
-StarmeUpAddonChromeContent.SMUEnableLogger = false;
+StarmeUpAddonChromeContent.SMUEnableLogger = true;
 
 StarmeUpAddonChromeContent.SMULogger = function(name) {
   if (StarmeUpAddonChromeContent.SMUEnableLogger === true) {
@@ -212,8 +212,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   switch(message.type){
     // from authenticateUserSMU
     case 'userLogged':
-      // logger.log(message.profileUserSMULogged);
-      // logger.log(message.token);
       localStorage.setItem('UserSMUIsLogged', 'true');
       localStorage.setItem('TokenUserSMULogged', message.token);
       localStorage.setItem('InfoUserSMULogged', message.infoUserSMULogged);
