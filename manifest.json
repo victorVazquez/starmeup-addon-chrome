@@ -13,7 +13,7 @@
   },
   "browser_action": {
     "default_title": "StarmeUp Addon",
-    "default_icon": "img/icon.png",
+    "default_icon": "img/icon-disabled.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [

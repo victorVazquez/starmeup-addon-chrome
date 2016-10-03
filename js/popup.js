@@ -185,6 +185,10 @@ window.onload = function(){
     localStorage.removeItem('profileUserSMULogged');
     localStorage.removeItem('tokenSMULogged');
     localStorage.removeItem('userSMULogged');
+    chrome.browserAction.setIcon({
+      path: '/img/icon-disabled.png'
+    });
+
 
     logger.warn('Closed user session in addon');
 
