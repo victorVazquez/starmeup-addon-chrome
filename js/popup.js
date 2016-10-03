@@ -42,6 +42,16 @@ window.onload = function(){
     });
   }
 
+  StarmeUpAddonChromePopUp.logIn = function(){
+    var logger = StarmeUpAddonChromePopUp.SMULogger('Log In');
+    logger.info('submit');
+    StarmeUpAddonChromePopUp.username = $('#username').val();
+    StarmeUpAddonChromePopUp.password = $('#password').val();
+    // If user is already logged
+    if (localStorage.getItem('userSMULogged') === null) {
+      StarmeUpAddonChromePopUp.authenticateUserSMU();
+    }
+  };
 
   StarmeUpAddonChromePopUp.authenticateUserSMU = function(){
     var logger = StarmeUpAddonChromePopUp.SMULogger('Authenticate User');
@@ -143,16 +153,6 @@ window.onload = function(){
       chrome.tabs.getSelected(null, function(tab){
         chrome.tabs.sendMessage(tab.id, message);
       });
-    // chrome.tabs.query({'active': true}, function(Tabs){
-    //   var numTabs = Tabs.length;
-    //   var i;
-    //   for(i = 0; i < numTabs; i++){
-    //     logger.warn(Tabs[i]);
-    //     if (Tabs[i].url === 'https://www.facebook.com/') {
-    //       chrome.tabs.sendMessage(Tabs[i].id, message);
-    //     }
-    //   }
-    // });
   };
 
   StarmeUpAddonChromePopUp.enableIntegration = function(){
@@ -177,8 +177,8 @@ window.onload = function(){
     StarmeUpAddonChromePopUp.sendMessageToContent({'type': 'appIntegrationDisabled'});
   };
 
-  StarmeUpAddonChromePopUp.closeSession = function(){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('closeSession');
+  StarmeUpAddonChromePopUp.logOut = function(){
+    var logger = StarmeUpAddonChromePopUp.SMULogger('logOut');
 
     localStorage.removeItem('InfoUserSMULogged');
     localStorage.removeItem('IntegrationEnabled');
@@ -192,17 +192,22 @@ window.onload = function(){
     window.location.href = 'popup.html';
   };
 
-  $('#logIn').on('click', function(e){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('Log In');
 
-    StarmeUpAddonChromePopUp.username = $('#username').val();
-    StarmeUpAddonChromePopUp.password = $('#password').val();
-    // If user is already logged
-    if (localStorage.getItem('userSMULogged') === null) {
-      StarmeUpAddonChromePopUp.authenticateUserSMU();
+  // popup.html Events
+  $('#logIn').on('click', function(e){
+    StarmeUpAddonChromePopUp.logIn();
+  });
+
+  $('#username, #password').keypress(function (e) {
+    console.log('Event: ', e);
+    console.log(e.charCode);
+    if (e.charCode == 13) {
+      console.log('Enter key');
+      StarmeUpAddonChromePopUp.logIn();
     }
   });
 
+  // main.html Events
   // send to profile userSMU
   $('#myProfile').on('click', function(e){
     var logger = StarmeUpAddonChromePopUp.SMULogger('My Profile');
@@ -227,7 +232,7 @@ window.onload = function(){
   });
 
   $('#logOut').on('click', function(e){
-    StarmeUpAddonChromePopUp.closeSession();
+    StarmeUpAddonChromePopUp.logOut();
   });
 
   $('#enableIntegration').change(function(e){
