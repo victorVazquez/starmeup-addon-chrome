@@ -25,6 +25,10 @@ window.onload = function(){
 
   if ('userSMULogged' in localStorage) {
     if ('IntegrationEnabled' in localStorage) {
+      chrome.browserAction.setIcon({
+        path: '/img/icon.png'
+      });
+
       $('#enableIntegration').prop('checked', true);
       $('.enableIntegration strong').text('Disable Facebook Integration');
     }
@@ -34,6 +38,10 @@ window.onload = function(){
       });
     });
   }else{
+    chrome.browserAction.setIcon({
+      path: '/img/icon-disabled.png'
+    });
+
     $('.enableIntegration strong').text('Enable Facebook Integration');
     chrome.tabs.query({'active': true}, function(Tabs){
       chrome.browserAction.setPopup({
