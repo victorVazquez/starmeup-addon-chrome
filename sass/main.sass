@@ -1,22 +1,54 @@
 // compileCompressed: ../css/$1.min.css
-$colorLinks: #00acae
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700)
 
+$colorLinks: #00acae
+$bgColor: #fff
+$formColor: #333
 
 body
   font-family: 'Open Sans', sans-serif
-  background-color: #b3dad9
-  // color: white
+  width: 24em
+  margin: 0 auto
+  padding: 2em 2.5em 0 2em
+  background-color: $bgColor
 
-a
-  color: $colorLinks
+.text-center
+  text-align: center
 
-  &:hover
-    text-decoration: none
-    color: $colorLinks
 
 .container
-  width: 24em
-  padding: 1.8em 0 0 0
+  width: 100%
+  float: left
 
-  .col-md-12
-    padding: 0
+  .logo
+    width: 105px
+    height: auto
+
+  form
+    font-size: 1.3em
+    float: left
+    width: 100%
+    color: $formColor
+    font-weight: normal
+
+
+  button
+    font-size: 1.15em
+    width: 100%
+    background-color: $colorLinks
+    color: white
+    border: none
+    padding: 0.6em
+    margin-top: 0
+    margin-bottom: 1em
+    border-radius: 2px
+    text-transform: uppercase
+
+    &:hover
+      cursor: pointer
+      opacity: 0.5
+
+
+  strong
+    padding-left: 0.25em
+    font-weight: normal

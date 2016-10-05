@@ -7,34 +7,20 @@
 <html>
   <head>
     <title>Starmeup Extension's Main Screen</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="/css/popup.min.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/main.min.css" media="screen" title="no title">
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="js/popup.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="col-md-12">
         <p class="text-center">
           <img class="logo text-center" src="/img/logo-login.png" alt="Logo StarmeUp" />
         </p>
-        <!-- <br>
-        <br>
-        <p>
-          <a href="my-profile.html">My Profile</a><br>
-          <a href="leaderboard.html">Leaderboard</a>
-        </p>
-        <p>
-          <input type="checkbox" id="enableIntegration" value="">
-          <label for="enableIntegration">Enable Facebook Integration</label>
-        </p> -->
         <form class="login" id="main">
           <p>
             <button type="button" name="button" id="myProfile">My Profile</button>
@@ -48,7 +34,6 @@
             </label>
           </p>
         </form>
-      </div>
     </div>
   </body>
 </html>

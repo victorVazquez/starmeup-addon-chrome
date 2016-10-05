@@ -8,7 +8,7 @@
     "48": "img/logo-addon.png"
   },
   "background": {
-    "scripts": ["js/jquery-2.2.4.min.js", "js/background.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
   "browser_action": {
@@ -19,12 +19,11 @@
   "content_scripts": [
     {
       "matches": ["https://www.facebook.com/*"],
-      "css": ["css/bootstrap.min.css", "css/font-awesome.min.css", "css/addon-smu-chrome.min.css"],
-      "fonts": ["https://fonts.googleapis.com/css?family=Open+Sans"],
-      "js": ["js/jquery-2.2.4.min.js", "js/content.js"]
+      "css": ["css/addon-smu-chrome.min.css"],
+      "js": ["js/content.js"]
     }
   ],
-  "web_accessible_resources": ["js/jquery-2.2.4.min.js", "fonts/*", "https://fonts.googleapis.com/css?family=Open+Sans", "css/addon-smu-fb.min.css"],
+  "web_accessible_resources": ["css/addon-smu-fb.min.css"],
   "permissions": [
     "tabs",
     "storage",

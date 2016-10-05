@@ -23,38 +23,12 @@ window.onload = function(){
   };
 
 
-  if ('userSMULogged' in localStorage) {
-    if ('IntegrationEnabled' in localStorage) {
-      chrome.browserAction.setIcon({
-        path: '/img/icon.png'
-      });
-
-      $('#enableIntegration').prop('checked', true);
-      $('.enableIntegration strong').text('Disable Facebook Integration');
-    }
-    chrome.tabs.query({'active': true}, function(Tabs){
-      chrome.browserAction.setPopup({
-        popup: 'main.html'
-      });
-    });
-  }else{
-    chrome.browserAction.setIcon({
-      path: '/img/icon-disabled.png'
-    });
-
-    $('.enableIntegration strong').text('Enable Facebook Integration');
-    chrome.tabs.query({'active': true}, function(Tabs){
-      chrome.browserAction.setPopup({
-        popup: 'popup.html'
-      });
-    });
-  }
 
   StarmeUpAddonChromePopUp.logIn = function(){
     var logger = StarmeUpAddonChromePopUp.SMULogger('Log In');
     logger.info('submit');
-    StarmeUpAddonChromePopUp.username = $('#username').val();
-    StarmeUpAddonChromePopUp.password = $('#password').val();
+    StarmeUpAddonChromePopUp.username = document.querySelector('#username').value;
+    StarmeUpAddonChromePopUp.password = document.querySelector('#password').value;
     // If user is already logged
     if (localStorage.getItem('userSMULogged') === null) {
       StarmeUpAddonChromePopUp.authenticateUserSMU();
@@ -72,9 +46,9 @@ window.onload = function(){
         logger.log('data: ', data);
         // logger.log('data.errorCode: ', data.errorCode);
         if (data.errorCode == 100 || data.errorCode == 125) { // invalid credentials
-          $('#formStarmeUp .error').addClass('show');
+          document.querySelector('#formStarmeUp .error span').className = 'show';
         }else{
-          $('#formStarmeUp .error').removeClass('show');
+          document.querySelector('#formStarmeUp .error span').className = 'hide';
           var profileUserSMULogged = data.result;
           var tokenSMULogged = data.token;
           // var idLoggedUser = data.result.id; // loggedUser
@@ -147,7 +121,7 @@ window.onload = function(){
               logger.log('finish requests: ');
               logger.log('info finish: ', info);
               StarmeUpAddonChromePopUp.sendMessageToContent({'type': 'logIn', 'infoUserSMULogged': localStorage['InfoUserSMULogged']});
-              StarmeUpAddonChromePopUp.enableIntegration();
+              window.location.href = 'main.html';
             }
           }
         };
@@ -163,103 +137,23 @@ window.onload = function(){
       });
   };
 
-  StarmeUpAddonChromePopUp.enableIntegration = function(){
-    $('.enableIntegration strong').text('Disable Facebook Integration');
-    localStorage.setItem('IntegrationEnabled', 'true');
-    chrome.browserAction.setIcon({
-      path: '/img/icon.png'
-    });
-    StarmeUpAddonChromePopUp.sendMessageToContent({'type': 'appIntegrationEnabled', 'token': localStorage['tokenSMULogged'], 'infoUserSMULogged': localStorage['InfoUserSMULogged'], 'profileUserSMULogged': localStorage['profileUserSMULogged']});
-
-    if (window.location.pathname === '/popup.html') {
-      window.location.href = 'main.html';
-    }
-  };
-
-  StarmeUpAddonChromePopUp.disableIntegration = function(){
-    $('.enableIntegration strong').text('Enable Facebook Integration');
-    localStorage.removeItem('IntegrationEnabled');
-    chrome.browserAction.setIcon({
-      path: '/img/icon-disabled.png'
-    });
-    StarmeUpAddonChromePopUp.sendMessageToContent({'type': 'appIntegrationDisabled'});
-  };
-
-  StarmeUpAddonChromePopUp.logOut = function(){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('logOut');
-
-    localStorage.removeItem('InfoUserSMULogged');
-    localStorage.removeItem('IntegrationEnabled');
-    localStorage.removeItem('profileUserSMULogged');
-    localStorage.removeItem('tokenSMULogged');
-    localStorage.removeItem('userSMULogged');
-    chrome.browserAction.setIcon({
-      path: '/img/icon-disabled.png'
-    });
-
-
-    logger.warn('Closed user session in addon');
-
-    StarmeUpAddonChromePopUp.sendMessageToContent({'type': 'logOut'});
-    window.location.href = 'popup.html';
-  };
-
 
   // popup.html Events
-  $('#logIn').on('click', function(e){
+  document.querySelector('#logIn').addEventListener('click', function(e){
     StarmeUpAddonChromePopUp.logIn();
   });
 
-  $('#username, #password').keypress(function (e) {
+  document.querySelector('#username').addEventListener('keypress',function (e) {
+    console.log(e);
     if (e.charCode == 13) {
       StarmeUpAddonChromePopUp.logIn();
     }
   });
-
-  // main.html Events
-  // send to profile userSMU
-  $('#myProfile').on('click', function(e){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('My Profile');
-
-    logger.log('profileUserSMULogged: ', JSON.parse(localStorage.getItem('profileUserSMULogged')));
-    var data = JSON.parse(localStorage.getItem('profileUserSMULogged'));
-    var uid = data.uid;
-    chrome.tabs.create({
-      url: 'https://qa.starmeup.com/#profile/' + uid,
-      active: true
-    });
-  });
-
-  $('#leaderboard').on('click', function(e){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('Leaderboard');
-
-    chrome.tabs.create({
-      url: 'https://qa.starmeup.com/#leaderboard',
-      active: true
-    });
-
-  });
-
-  $('#logOut').on('click', function(e){
-    StarmeUpAddonChromePopUp.logOut();
-  });
-
-  $('#enableIntegration').change(function(e){
-    var logger = StarmeUpAddonChromePopUp.SMULogger('Enable Integration');
-
-    // logger.log('isChecked');
-    // logger.log(localStorage['tokenSMULogged']);
-
-    if ('IntegrationEnabled' in localStorage) {
-      StarmeUpAddonChromePopUp.disableIntegration();
-    }else{
-      if ('userSMULogged' in localStorage) {
-        StarmeUpAddonChromePopUp.enableIntegration();
-      }
+  document.querySelector('#password').addEventListener('keypress',function (e) {
+    console.log(e);
+    if (e.charCode == 13) {
+      StarmeUpAddonChromePopUp.logIn();
     }
   });
-
-
-
 
 };

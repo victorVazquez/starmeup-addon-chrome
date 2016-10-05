@@ -25,27 +25,32 @@ StarmeUpAddonChromeContent.SMULogger = function(name) {
 StarmeUpAddonChromeContent.lookUpRenderElements = function(elements){
   var logger = new StarmeUpAddonChromeContent.SMULogger('LookUp Render Elements');
 
-  var elements_str = elements.splice(',').join(', ');
-  var elements_found = $('body').find($(elements_str));
+  var elements_found = [];
+
+  for (var i = 0; i < elements.length; i++) {
+    elements_found.push(document.querySelectorAll(elements[i]));
+  }
 
   if (elements_found.length > 0) {
     for (var i = 0; i < elements_found.length; i++) {
-      logger.warn('Elements found: ', elements_found[i].id);
-      switch(elements_found[i].id){
+      if (elements_found[i].length > 0) {
+        logger.warn('Elements found: ', elements_found[i][0].id);
+        switch(elements_found[i][0].id){
 
-        // For User Logged
-        case 'pagelet_navigation':
-        StarmeUpAddonChromeContent.renderInfoLoggedUser();
+          // For User Logged
+          case 'pagelet_navigation':
+          StarmeUpAddonChromeContent.renderInfoLoggedUser();
 
-        break;
+          break;
 
-        // For Facebook User
-        case 'timeline_top_section':
-        var element = '#timeline_top_section';
-        var userName = $('#pageTitle').text();
-        StarmeUpAddonChromeContent.findUserSMU(userName);
-        break;
+          // For Facebook User
+          case 'timeline_top_section':
+          // var element = '#timeline_top_section';
+          var userName = document.querySelector('#pageTitle').text;
+          StarmeUpAddonChromeContent.findUserSMU(userName);
+          break;
 
+        }
       }
     }
   }else{
@@ -97,15 +102,14 @@ StarmeUpAddonChromeContent.findUserSMU = function(userName){
 
 StarmeUpAddonChromeContent.renderInfoLoggedUser = function(){
   var logger = new StarmeUpAddonChromeContent.SMULogger('Render Info Logged User');
-
-  var infoUserSMULogged = JSON.parse(localStorage['InfoUserSMULogged']);
-  if ($('#StarmeUpAddonChromeContent').length === 0) {
-    $('#pagelet_navigation').before('<div id="StarmeUpAddonChromeContent"></div>');
-    $('#StarmeUpAddonChromeContent').hide().append('<div id="smuAddonFBHeader"><i class="fa fa-star fa-star-smu" aria-hidden="true"></i><strong>StarmeUp</strong></div><div id="smuAddonFBBody"><div id="infoUserSMULogged"><div class="stars"><span><i class="fa fa-star" aria-hidden="true"></i>'+infoUserSMULogged.starsReceived+'</span><strong>STARS</strong></div><div class="badges"><span><i class="fa fa-certificate" aria-hidden="true"></i>'+infoUserSMULogged.badges+'</span><strong>BADGES</strong></div><div class="remaining"><span><i class="fa fa-star-half-o" aria-hidden="true"></i>'+infoUserSMULogged.starsRemaining+'</span><strong>REMAINING</strong></div></div></div>');
-    $('#StarmeUpAddonChromeContent').slideDown();
-    logger.info('The infoUserSMULogged has added succesfully before #pagelet_navigation :)');
-  }else{
-    logger.warn('The infoUserSMULogged has been added');
+  if (document.querySelector('#pagelet_navigation') !== null) {
+    var infoUserSMULogged = JSON.parse(localStorage['InfoUserSMULogged']);
+    if (document.querySelector('#StarmeUpAddonChromeContent') === null) {
+      document.querySelector('#pagelet_navigation').insertAdjacentHTML('beforebegin', '<div id="StarmeUpAddonChromeContent"><div id="smuAddonFBHeader"><i class="fa fa-star fa-star-smu" aria-hidden="true"></i><strong>StarmeUp</strong></div><div id="smuAddonFBBody"><div id="infoUserSMULogged"><div class="stars"><span><i class="fa fa-star" aria-hidden="true"></i>'+infoUserSMULogged.starsReceived+'</span><strong>STARS</strong></div><div class="badges"><span><i class="fa fa-certificate" aria-hidden="true"></i>'+infoUserSMULogged.badges+'</span><strong>BADGES</strong></div><div class="remaining"><span><i class="fa fa-star-half-o" aria-hidden="true"></i>'+infoUserSMULogged.starsRemaining+'</span><strong>REMAINING</strong></div></div></div></div>');
+      logger.info('The infoUserSMULogged has added succesfully before #pagelet_navigation :)');
+    }else{
+      logger.warn('The infoUserSMULogged has been added');
+    }
   }
 };
 
@@ -114,22 +118,19 @@ StarmeUpAddonChromeContent.renderProfile = function(profile){
 
   logger.log('Profile to render : ', profile);
 
-  if ($('#StarmeUpAddonChromeContent').length === 0) {
-    $('#timeline_top_section').after('<div id="StarmeUpAddonChromeContent" class="profileUserSMU"></div>');
-    $('#StarmeUpAddonChromeContent').hide().append('<div id="smuAddonFBHeader" class="clearfix"><i class="fa fa-star fa-star-smu" aria-hidden="true"></i><strong>Starmeup</strong></div><div id="smuAddonFBBody"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>LOCATION</strong><br><span>'+profile.organizationOfficeName+'</span><br><i class="fa fa-envelope" aria-hidden="true"></i> <strong>EMAIL</strong><br><span>'+profile.identification+'</span><br><i class="fa fa-briefcase" aria-hidden="true"></i> <strong>AREA</strong><br><span>'+profile.area+'</span><br><i class="fa fa-suitcase" aria-hidden="true"></i> <strong>PROJECT</strong><br><span>'+profile.project+'</span><br><i class="fa fa-folder-open" aria-hidden="true"></i>  <strong>ACCOUNT</strong><br><span>'+profile.account+'</span><br><p><a href="https://qa.starmeup.com/#profile/' + profile.uid + '" target="_blank">Give a Star</a></p></div>');
-    $('#StarmeUpAddonChromeContent').slideDown();
+  if (document.querySelector('#StarmeUpAddonChromeContent') === null) {
+    document.querySelector('#timeline_top_section').insertAdjacentHTML('afterend', '<div id="StarmeUpAddonChromeContent" class="profileUserSMU"><div id="smuAddonFBHeader" class="clearfix"><i class="fa fa-star fa-star-smu" aria-hidden="true"></i><strong>Starmeup</strong></div><div id="smuAddonFBBody"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>LOCATION</strong><br><span>'+profile.organizationOfficeName+'</span><br><i class="fa fa-envelope" aria-hidden="true"></i> <strong>EMAIL</strong><br><span>'+profile.identification+'</span><br><i class="fa fa-briefcase" aria-hidden="true"></i> <strong>AREA</strong><br><span>'+profile.area+'</span><br><i class="fa fa-suitcase" aria-hidden="true"></i> <strong>PROJECT</strong><br><span>'+profile.project+'</span><br><i class="fa fa-folder-open" aria-hidden="true"></i>  <strong>ACCOUNT</strong><br><span>'+profile.account+'</span><br><p><a href="https://qa.starmeup.com/#profile/' + profile.uid + '" target="_blank">Give a Star</a></p></div></div>');
     logger.info('The profile has added succesfully in #timeline_top_section :)');
   }else{
     logger.warn('The profile has been added');
   }
 };
 
+
 StarmeUpAddonChromeContent.removeProfile = function(){
   var logger = new StarmeUpAddonChromeContent.SMULogger('Remove Profile');
-  $('#StarmeUpAddonChromeContent').slideUp(function(){
-    $('#StarmeUpAddonChromeContent').remove();
-    logger.warn('StarmeUpAddonChromeContent removed');
-  });
+  document.querySelector('#StarmeUpAddonChromeContent').parentNode.removeChild(document.querySelector('#StarmeUpAddonChromeContent'));
+  logger.warn('StarmeUpAddonChromeContent removed');
 };
 
 StarmeUpAddonChromeContent.enableIntegration = function(message){

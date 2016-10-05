@@ -7,21 +7,20 @@
 <html>
   <head>
     <title>Starmeup Extension's Popup</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/css/popup.min.css" media="screen" title="no title">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/popup.js"></script>
+    <!-- <script src="js/starmeup.js"></script> -->
+
   </head>
   <body>
     <div class="container">
-      <div class="col-md-12">
         <p class="text-center">
           <img class="logo text-center" src="/img/logo-login.png" alt="Logo StarmeUp" />
         </p>
@@ -34,28 +33,14 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" value="">
           </p>
-          <p class="error">The ID/email or password you have entered is invalid. Try again or try logging in with a Google account.</p>
-          <p class="">
+          <p class="error"><span class="hide">The ID/email or password you have entered is invalid. Try again or try logging in with a Google account.</span></p>
+          <p>
             <button type="button" name="button" id="logIn">Login to StarmeUp</button>
           </p>
-          <p class="text-center">
-            <a href="#">Forgot password?</a><br>
-            <a href="#">New user? Sign Up Now!</a>
-          </p>
-          <!-- <p class="">
-            <button type="button" name="button" id="logOut">Logout</button>
-          </p> -->
-          <!-- <p class="new-user text-center">
-            <a href="signup.html">New user? Sign Up Now!</a>
-          </p> -->
-          <p class="eula text-center">By signing in you are agreeing to the <a href="#">End User Licence Agreement</a> and the <a href="#">Terms & Conditions of Use</a></p>
+          <p class="eula text-center">By signing in you are agreeing to the <a href="#">End User Licence Agreement</a> and the <a href="#">Terms &amp; Conditions of Use</a></p>
         </form>
-        <!-- <div class="text-center">
-          <button id="button" class="btn btn-primary btn-warning">Show Leaderboard</button>
-        </div> -->
         <br>
         <br>
-      </div>
     </div>
   </body>
 </html>

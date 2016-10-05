@@ -5,6 +5,7 @@
 
 $fontSMU: 'Open Sans'
 $headerBGColor: #00ABAD
+$borderColor: #dddfe2
 
 #pagelet_escape_hatch
   display: none
@@ -16,28 +17,44 @@ $headerBGColor: #00ABAD
   float: left
   background-color: #fff
   color: #90949c
+  border: solid 1px $borderColor
+
 
   &.profileUserSMU
-    width: 323px
+    width: 321px
     float: none
     display: inline-block
     clear: both
     font-size: 1.1em
 
     #smuAddonFBBody
-      padding-left: 1.5em
+      text-indent: 1.5em
+
+      strong
+        // text-indent: 0
+        padding-top: 0
+        display: block
+
+      br
+        display: none
 
       i
         margin-top: 1em
 
       p
-        text-align: center
-        padding-right: 1.5em
+        // text-align: center
+        // text-indent: 0
+        margin: 1em 0 0 0
+        float: left
+        width: 100%
+        // padding-right: 1.5em
 
         a
           display: inline-block
-          width: 100%
+          width: 83%
           font-size: 1.2em
+          text-align: center
+          text-indent: 0
           text-transform: uppercase
           background-color: $headerBGColor
           color: white
@@ -57,8 +74,9 @@ $headerBGColor: #00ABAD
   font-size: 1.2em
   background-color: $headerBGColor
   color: #fff
-  padding: 0.5em
-  border: solid 1px #dddfe2
+  text-indent: 0.5em
+  line-height: 2.5em
+  // border: solid 1px #dddfe2
 
   strong
     padding-left: 0.3em
@@ -68,9 +86,9 @@ $headerBGColor: #00ABAD
   width: 100%
   float: left
   padding: 0.5em 0 1.5em 0
-  border-left: solid  1px #dddfe2
-  border-bottom: solid  1px #dddfe2
-  border-right: solid  1px #dddfe2
+  // border-left: solid  1px #dddfe2
+  // border-bottom: solid  1px #dddfe2
+  // border-right: solid  1px #dddfe2
 
   strong
     font-size: 0.95em
@@ -78,14 +96,14 @@ $headerBGColor: #00ABAD
     padding-top: 0.5em
 
   i
-    width: 1.2em
+    // width: 1.2em
     display: inline-block
     text-align: center
 
   span
     display: inline-block
     width: 100%
-    padding: 0 0.2em 0 1.7em
+    padding: 0
     float: left
 
   #infoUserSMULogged
@@ -132,7 +150,7 @@ $headerBGColor: #00ABAD
         color: $headerBGColor
 
     .remaining
-      width: 38%
+      width: 37%
       border-left: solid 1px #ccc
       float: left
 
