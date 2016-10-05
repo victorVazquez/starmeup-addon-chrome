@@ -38,7 +38,11 @@ window.onload = function(){
   StarmeUpAddonChromePopUp.authenticateUserSMU = function(){
     var logger = StarmeUpAddonChromePopUp.SMULogger('Authenticate User');
     var requestUserSMUData = new XMLHttpRequest();
-    var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/?email=' + StarmeUpAddonChromePopUp.username + '&password=' + StarmeUpAddonChromePopUp.password;
+    var data = new FormData();
+    data.append('email', StarmeUpAddonChromePopUp.username);
+    data.append('password', StarmeUpAddonChromePopUp.password);
+    // var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/?email=' + StarmeUpAddonChromePopUp.username + '&password=' + StarmeUpAddonChromePopUp.password;
+    var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/';
     requestUserSMUData.open('POST', url, true);
     requestUserSMUData.onreadystatechange = function(){
       if (requestUserSMUData.readyState == 4) {
@@ -61,7 +65,7 @@ window.onload = function(){
         }
       }
     };
-    requestUserSMUData.send();
+    requestUserSMUData.send(data);
   };
 
   StarmeUpAddonChromePopUp.getInfoUserSMULogged = function(id){
