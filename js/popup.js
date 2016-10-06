@@ -41,7 +41,6 @@ window.onload = function(){
     var data = new FormData();
     data.append('email', StarmeUpAddonChromePopUp.username);
     data.append('password', StarmeUpAddonChromePopUp.password);
-    // var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/?email=' + StarmeUpAddonChromePopUp.username + '&password=' + StarmeUpAddonChromePopUp.password;
     var url = 'https://qa.starmeup.com/starmeup-api/v2/sec/authenticateuser/';
     requestUserSMUData.open('POST', url, true);
     requestUserSMUData.onreadystatechange = function(){

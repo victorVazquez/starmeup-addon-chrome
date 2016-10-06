@@ -62,7 +62,6 @@ window.onload = function(){
     logger.warn('Closed user session in addon');
 
     StarmeUpAddonChromeMain.sendMessageToContent({'type': 'logOut'});
-    // window.close();
     window.location.href = 'popup.html';
   };
 
